@@ -101,15 +101,22 @@ form
 .form-control {
 	align-items: center;
 }
+.owl-next, .owl-prev:hover {
+	font-size: 70px !important;
+	position: relative;
+    top: -235px;
+    opacity: 0.7;
+}
 .owl-next, .owl-prev {
 	font-size: 70px !important;
 	position: relative;
     top: -235px;
+    opacity: 0.7;
 }
 .owl-prev {
 	left: -817px;
 }
 .owl-next {
-	left: 817px;
+	left: 693px;
 }
 
