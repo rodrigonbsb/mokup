@@ -53,7 +53,6 @@ class FilmeDAO extends Model
                             OR duracao like '%{$pesquisa}%'
                             OR dataLancamento like '%{$pesquisa}%'
                             OR elenco like '%{$pesquisa}%'
-                            OR url like '%{$pesquisa}%'
                             OR diretor like '%{$pesquisa}%'";
         } else {
             $sql = "SELECT * FROM {$this->tabela}";

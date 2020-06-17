@@ -50,7 +50,7 @@
         <div class="owl-carousel owl-theme" id="listagem">
                 <?php foreach ($filmes as $filme): ?>
             <div class="item">
-                <a href="">
+                <a href="filme.php?id=<?= $filme->getId() ?>" >
                     <img src="admin/assets/img/filme/<?= ($filme->getImagem()) ?>" id="cartaz">
                 </a>
             </div>
@@ -117,48 +117,6 @@
             </div>
             <?php endforeach; ?>
             </div>
-            <!-- <div class="carousel-item active">
-                <div class="row">
-                    <div class="col-lg-3">
-                        <img id="cartaz" src="https://br.web.img3.acsta.net/pictures/20/02/04/19/08/4847130.jpg">
-                    </div>
-                    <div class="col-lg-3">
-                        <img id="cartaz" src="https://br.web.img3.acsta.net/pictures/20/02/04/19/08/4847130.jpg">
-                    </div>
-                    <div class="col-lg-3">
-                        <img id="cartaz" src="https://br.web.img3.acsta.net/pictures/20/02/04/19/08/4847130.jpg">
-                    </div>
-                    <div class="col-lg-3">
-                        <img id="cartaz" src="https://br.web.img3.acsta.net/pictures/20/02/04/19/08/4847130.jpg">
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item ">
-                <div class="row">
-                    <div class="col-lg-3">
-                        <img id="cartaz" src="https://i0.wp.com/pipocamoderna.com.br/wp-content/uploads/2020/03/wonder_woman_nineteen_eighty_four_ver7_xlg.jpg">
-                    </div>
-                    <div class="col-lg-3">
-                        <img id="cartaz" src="https://i0.wp.com/pipocamoderna.com.br/wp-content/uploads/2020/03/wonder_woman_nineteen_eighty_four_ver7_xlg.jpg">
-                    </div>
-                    <div class="col-lg-3">
-                        <img id="cartaz" src="https://i0.wp.com/pipocamoderna.com.br/wp-content/uploads/2020/03/wonder_woman_nineteen_eighty_four_ver7_xlg.jpg">
-                    </div>
-                    <div class="col-lg-3">
-                        <img id="cartaz" src="https://i0.wp.com/pipocamoderna.com.br/wp-content/uploads/2020/03/wonder_woman_nineteen_eighty_four_ver7_xlg.jpg">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <a class="carousel-control-prev" href="#estreia" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Anterior</span>
-        </a>
-        <a class="carousel-control-next" href="#estreia" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Próximo</span>
-        </a> -->
-    
     <p>&nbsp;</p>
 
 <div class="row" id="fundo_cinza">

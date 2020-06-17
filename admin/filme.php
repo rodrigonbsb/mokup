@@ -5,14 +5,17 @@
 require 'classes/Genero.php';
 require 'classes/Filme.php';
 require 'classes/Diretor.php';
+require 'classes/FilmeGenero.php';
 require 'classes/GeneroDAO.php';
 require 'classes/FilmeDAO.php';
 require 'classes/DiretorDAO.php';
+require 'classes/FilmeGeneroDAO.php';
 
 $filmeDAO = new FilmeDAO();
 $filmes = $filmeDAO->listar();
 $generoDAO = new GeneroDAO();
 $diretorDAO = new DiretorDAO();
+$filmeGeneroDAO = new FilmeGeneroDAO();
 
 if(isset($_GET['pesquisa']) && $_GET['pesquisa'] != '') {
 	$filmes = $filmeDAO->listar($_GET['pesquisa']);
@@ -68,7 +71,7 @@ if(isset($_GET['pesquisa']) && $_GET['pesquisa'] != '') {
 				<strong>Data de lançamento:</strong>
 				<p><?= $filme->getDataLancamento() ?></p>
 
-				<strong>Url(Trailer):</strong>
+				<strong>URL do Trailer:</strong>
 				<p><?= $filme->getUrl() ?></p>
 
 				<strong>Tipo:</strong>
