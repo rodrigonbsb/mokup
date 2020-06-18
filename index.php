@@ -111,7 +111,7 @@
             <div class="owl-carousel owl-theme" id="listagem">
                 <?php foreach ($filmes as $filme): ?>
             <div class="item">
-                <a href="">
+                <a href="filme.php?id=<?= $filme->getId() ?>">
                     <img src="admin/assets/img/filme/<?= ($filme->getImagem()) ?>" id="cartaz">
                 </a>
             </div>

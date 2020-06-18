@@ -139,8 +139,13 @@ img.filme_pag
 h1.filme_pag
 {
 	margin-left: 19%;
-	/*margin-left: 200px;*/
     margin-top: 128px;
+    display: inline-block;
+}
+h3.filme_pag
+{
+    margin-left: 90px;
+    margin-top: 45px;
     display: inline-block;
 }
 p.filme_pag
@@ -149,3 +154,7 @@ p.filme_pag
     margin-top: 51px;
     margin-right: 96px;
 }
+span.filme_pag
+{
+	margin-top: 9px;
+    margin-left: 137px;
