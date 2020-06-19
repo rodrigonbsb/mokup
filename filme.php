@@ -9,17 +9,20 @@
 	include_once('admin/classes/DiretorDAO.php');
 	include_once('admin/classes/Avaliacao.php');
 	include_once('admin/classes/AvaliacaoDAO.php');
+	include_once('admin/classes/FilmeGenero.php');
+	include_once('admin/classes/FilmeGeneroDAO.php');
+	include_once('admin/classes/FilmeDiretor.php');
+	include_once('admin/classes/FilmeDiretorDAO.php');
 
 	$filme = new filme();
 	$id = $_GET['id'];
 	$filmeDAO = new FilmeDAO();
 	$filme = $filmeDAO->get($id);
-
+	$generos = $filmeDAO->getGeneros($id);
+	$filmeGeneroDAO = new FilmeGeneroDAO();
 	$generoDAO = new GeneroDAO();
-	$genero = $generoDAO->get($filme->getGenero());
-
 	$diretorDAO = new DiretorDAO();
-	$diretor = $diretorDAO->get($filme->getDiretor());
+	$filmeDiretorDAO = new FilmeDiretorDAO();
 ?>
 
 <iframe src="<?= ($filme->getUrl()) ?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -41,9 +44,11 @@
 			</strong>
 		</h3>
 		<h3 class="filme_pag">
+
 			<strong>				
-				Diretor: <?= ($diretor->getNome()) ?>
+				Diretor: <!-- <?= $filme->nome_diretor ?> -->
 			</strong>
+
 		</h3>
 	</div>
 </div>
@@ -51,10 +56,12 @@
 	<h3 class="filme_pag">Gênero:</h3>
 </div>
 <div class="row">
+		<?php foreach($generos as $genero): ?>
 		<span class="badge badge-primary filme_pag">
-				<?= ($genero->getNome()) ?>	
+				<?= $genero->getNome() ?>
 		</span>
-</div>
+		<?php endforeach; ?>
+</div> 
 <?php  
 	include_once('layout/footer.php');
 ?>

@@ -13,14 +13,12 @@ class FilmeDAO extends Model
     {
     	$values = "null, 
     				'{$filme->getNome()}',
-                    '{$filme->getGenero()->getId()}',
                     '{$filme->getDuracao()}',
     				'{$filme->getDataLancamento()}', 
                     '{$filme->getUrl()}', 
                     '{$filme->getTipo()}', 
                     '{$filme->getSinopse()}', 
                     '{$filme->getElenco()}', 
-                    '{$filme->getDiretor()->getId()}',
                     '{$filme->getImagem()}'
                     ";
     	return $this->inserir($values);
@@ -31,35 +29,90 @@ class FilmeDAO extends Model
         $altera_imagem = ($filme->getImagem() != '' ? ", imagem = '{$filme->getImagem()}'" : '');
 
     	$values = 	"nome = '{$filme->getNome()}',
-                    genero = '{$filme->getGenero()->getId()}',
                     duracao = '{$filme->getDuracao()}',
     				dataLancamento = '{$filme->getDataLancamento()}',
     				url = '{$filme->getUrl()}',
                     tipo = '{$filme->getTipo()}',
                     sinopse = '{$filme->getSinopse()}',
-    				elenco = '{$filme->getElenco()}',
-    				diretor = '{$filme->getDiretor()->getId()}'
+    				elenco = '{$filme->getElenco()}'
                     {$altera_imagem}
     				";
     	$this->alterar($filme->getId(), $values);
     }
 
-    public function listar($pesquisa = '')
+    public function listar($pesquisa = '', $limit = 300)
     {
         if($pesquisa != '') {
-            $sql = "SELECT * FROM {$this->tabela} 
-                        WHERE nome like '%{$pesquisa}%'
-                            OR genero like '%{$pesquisa}%'
-                            OR duracao like '%{$pesquisa}%'
-                            OR dataLancamento like '%{$pesquisa}%'
-                            OR elenco like '%{$pesquisa}%'
-                            OR diretor like '%{$pesquisa}%'";
+            $sql = "SELECT f.*,group_concat(distinct d.nome) as nome_diretor, group_concat(distinct g.nome) as nome_genero FROM filme f 
+                        LEFT JOIN filme_genero fg on fg.id_filme = f.id
+                        LEFT JOIN genero g on g.id = fg.id_genero
+                        LEFT JOIN filme_diretor fd on fd.id_filme = f.id
+                        LEFT JOIN diretor d on d.id = fd.id_diretor                               
+                            WHERE f.nome like '%{$pesquisa}%'
+                                        OR f.genero like '%{$pesquisa}%'
+                                        OR f.duracao like '%{$pesquisa}%'
+                                        OR f.dataLancamento like '%{$pesquisa}%'
+                                        OR f.elenco like '%{$pesquisa}%'
+                                        OR f.diretor like '%{$pesquisa}%'
+                                            GROUP BY f.id;
+                                            limit {$limit}";
         } else {
-            $sql = "SELECT * FROM {$this->tabela}";
+            $sql = "SELECT f.*,group_concat(distinct d.nome) as nome_diretor, group_concat(distinct g.nome) as nome_genero FROM filme f 
+                        LEFT JOIN filme_genero fg on fg.id_filme = f.id
+                        LEFT JOIN genero g on g.id = fg.id_genero
+                        LEFT JOIN filme_diretor fd on fd.id_filme = f.id
+                        LEFT JOIN diretor d on d.id = fd.id_diretor
+                                GROUP BY f.id;
+                                limit {$limit}";
         }
         $stmt = $this->db->prepare($sql);
         $stmt->setFetchMode(PDO::FETCH_CLASS, $this->class);
         $stmt->execute();
         return $stmt->fetchAll();
     }
+
+    public function listarBreve($limit = 300)
+    {
+
+            $sql = "SELECT * FROM {$this->tabela} 
+                        WHERE tipo = 'Em Breve'
+                        limit {$limit}";
+        $stmt = $this->db->prepare($sql);
+        $stmt->setFetchMode(PDO::FETCH_CLASS, $this->class);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    public function getGeneros($id)
+    {
+    /*      $where = '';
+            if(condicao != '') {
+                $where = " WHERE {$condicao}";
+            }*/
+            $sql = "SELECT g.id, g.nome FROM filme f 
+                    LEFT JOIN filme_genero fg on fg.id_filme = f.id
+                    LEFT JOIN genero g on g.id = fg.id_genero
+                    WHERE f.id = {$id};";
+            $stmt = $this->db->prepare($sql);
+            $stmt->setFetchMode(PDO::FETCH_CLASS, 'Genero');
+            $stmt->execute();
+            return $stmt->fetchAll();
+    }
+
+    public function getDiretor($id)
+    {
+    /*      $where = '';
+            if(condicao != '') {
+                $where = " WHERE {$condicao}";
+            }*/
+            $sql = "SELECT d.id, d.nome FROM filme f 
+                    LEFT JOIN filme_diretor fd on fd.id_filme = f.id
+                    LEFT JOIN diretor d on d.id = fd.id_diretor
+                    WHERE f.id = {$id};";
+            $stmt = $this->db->prepare($sql);
+            $stmt->setFetchMode(PDO::FETCH_CLASS, 'Genero');
+            $stmt->execute();
+            return $stmt->fetchAll();
+    }
+
 }

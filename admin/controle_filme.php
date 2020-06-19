@@ -4,18 +4,21 @@ require 'classes/Genero.php';
 require 'classes/Diretor.php';
 require 'classes/FilmeGenero.php';
 require 'classes/FilmeDiretor.php';
+
 require 'classes/FilmeDAO.php';
 require 'classes/GeneroDAO.php';
 require 'classes/DiretorDAO.php';
 require 'classes/FilmeGeneroDAO.php';
 require 'classes/FilmeDiretorDAO.php';
 
+
 $filme = new Filme();
 $filmeDAO = new FilmeDAO();
 $generoDAO = new GeneroDAO();
 $diretorDAO = new DiretorDAO();
 $filmeGeneroDAO = new FilmeGeneroDAO();
-$FilmeDiretorDAO = new FilmeDiretorDAO();
+$filmeDiretorDAO = new FilmeDiretorDAO();
+
 
 $acao = $_GET['acao'];
 $id = '';
@@ -36,6 +39,8 @@ $upload['erros'][4] = 'Não foi feito o upload do arquivo';
 
 if($acao == 'deletar') {
 
+	$filmeGeneroDAO->deletaGenero($id);
+	$filmeDiretorDAO->deletaDiretor($id);
 	$filmeDAO->deletar($id);
 
 	$msg = 'Filme excluído com sucesso';
@@ -70,9 +75,6 @@ if($acao == 'deletar') {
 		}
 	}
 
-	$genero = $generoDAO->get($_POST['genero']);
-	$diretor = $diretorDAO->get($_POST['diretor']);
-
 	$filme->setNome($_POST['nome']);
 	$filme->setDuracao($_POST['duracao']);
 	$filme->setDataLancamento($_POST['dataLancamento']);
@@ -80,11 +82,25 @@ if($acao == 'deletar') {
 	$filme->setTipo($_POST['tipo']);
 	$filme->setSinopse($_POST['sinopse']);
 	$filme->setElenco($_POST['elenco']);
-	$filme->setGenero($genero);
-	$filme->setDiretor($diretor);
 	/*print_r($filme); exit;*/
 
 	$id = $filmeDAO->insereFilme($filme);
+
+	foreach($_POST['genero'] as $key => $value) {
+		$filmegenero = new FilmeGenero();
+		$filmegenero->setIdFilme($id); 
+		$filmegenero->setIdGenero($value); 
+
+		$filmeGeneroDAO->insereFilmeGenero($filmegenero);
+	}
+
+	foreach($_POST['diretor'] as $key => $value) {
+		$filmediretor = new FilmeDiretor();
+		$filmediretor->setIdFilme($id); 
+		$filmediretor->setIdDiretor($value); 
+
+		$filmeDiretorDAO->insereFilmeDiretor($filmediretor);
+	}
 
 	$msg = 'Filme cadastrado com sucesso';
 	header("Location: form_filme.php?id=$id&msg=$msg");
@@ -92,7 +108,6 @@ if($acao == 'deletar') {
 } else if($acao == 'editar') {
 
 	$id = $_POST['id'];
-	$diretor = $diretorDAO->get($_POST['diretor']);
 
 
 	if($_FILES['imagem']['name'] != '') {
@@ -146,8 +161,7 @@ if($acao == 'deletar') {
 	$filme->setSinopse($_POST['sinopse']);
 	$filme->setElenco($_POST['elenco']);
 	
-	/*$filme->setGenero($genero);*/
-	/*$filme->setDiretor($diretor);*/
+	$filmeGeneroDAO->deletaGenero($filme->getId());
 
 	foreach($_POST['genero'] as $key => $value) {
 		$filmegenero = new FilmeGenero();
@@ -156,15 +170,18 @@ if($acao == 'deletar') {
 
 		$filmeGeneroDAO->insereFilmeGenero($filmegenero);
 	}
+
+	$filmeDiretorDAO->deletaDiretor($filme->getId());
+
 	foreach($_POST['diretor'] as $key => $value) {
 		$filmediretor = new FilmeDiretor();
 		$filmediretor->setIdFilme($filme->getId()); 
-		$filmediretor->setIdGenero($value); 
+		$filmediretor->setIdDiretor($value); 
 
 		$filmeDiretorDAO->insereFilmeDiretor($filmediretor);
 	}
-	print_r($_POST); exit;
 
+	//print_r($_POST); exit;
 	$filmeDAO->alteraFilme($filme);
 
 	$msg = 'Filme alterado com sucesso';
