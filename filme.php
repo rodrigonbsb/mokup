@@ -13,6 +13,8 @@
 	include_once('admin/classes/FilmeGeneroDAO.php');
 	include_once('admin/classes/FilmeDiretor.php');
 	include_once('admin/classes/FilmeDiretorDAO.php');
+	include_once('admin/classes/Avaliacao.php');
+	include_once('admin/classes/AvaliacaoDAO.php');
 
 	$filme = new filme();
 	$id = $_GET['id'];
@@ -23,6 +25,9 @@
 	$generoDAO = new GeneroDAO();
 	$diretorDAO = new DiretorDAO();
 	$filmeDiretorDAO = new FilmeDiretorDAO();
+	$diretores = $filmeDAO->getDiretor($id);
+	$avaliacaoDAO = new AvaliacaoDAO();
+	$avaliacoes = $avaliacaoDAO->listar();
 ?>
 
 <iframe src="<?= ($filme->getUrl()) ?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -34,33 +39,44 @@
 	<div class="col-md-8">
 		<h1 class="filme_pag"><?= ($filme->getNome()) ?></h1>
 		<p class="filme_pag" style="text-align: justify;"><?= ($filme->getSinopse()) ?></p>
+		<h3 class="afasta_top">
+			<strong>
+				Elenco: 				
+			</strong>
+		</h3>
+			<p id="elenco"><?= ($filme->getElenco()) ?></p>
+		<h3>
+			<strong>				
+				Diretor(es):
+			</strong>
+			<p id="diretor">
+			<?php foreach($diretores as $diretor): ?>
+				<?= $diretor->getNome() ?>
+				<br>
+			<?php endforeach; ?>
+			</p>
+		</h3>
 	</div>
+</div>
+<div class="row">
+	<?php foreach($avaliacoes as $avaliacao): ?>
+		<img class="estrela" src="admin/assets/img/estrelas/<?= $avaliacao->getAvaliacao() ?>.png">
+		<br>
+		(<?= $avaliacao->getAvaliacao() ?> / 5)
+		<?php endforeach; ?>
 </div>
 <div class="row">
 	<div class="col-md-4">
-		<h3 class="filme_pag">
-			<strong>
-				Elenco: <?= ($filme->getElenco()) ?>				
-			</strong>
-		</h3>
-		<h3 class="filme_pag">
-
-			<strong>				
-				Diretor: <!-- <?= $filme->nome_diretor ?> -->
-			</strong>
-
-		</h3>
+		<h3 class="filme_pag">Gênero:</h3>
 	</div>
-</div>
-<div class="row">
-	<h3 class="filme_pag">Gênero:</h3>
-</div>
-<div class="row">
+	<div class="col-md-8">
 		<?php foreach($generos as $genero): ?>
 		<span class="badge badge-primary filme_pag">
 				<?= $genero->getNome() ?>
 		</span>
 		<?php endforeach; ?>
+	</div>
+</div>	
 </div> 
 <?php  
 	include_once('layout/footer.php');

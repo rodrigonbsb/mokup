@@ -142,12 +142,11 @@ h1.filme_pag
     margin-top: 128px;
     display: inline-block;
 }
-h3.filme_pag
+.afasta_top
 {
-    margin-left: 90px;
-    margin-top: 45px;
-    display: inline-block;
+	margin-top: 38px;
 }
+
 p.filme_pag
 {
 	text-align: justify;
@@ -158,3 +157,19 @@ span.filme_pag
 {
 	margin-top: 9px;
     margin-left: 137px;
+}
+#elenco
+{
+	text-align: justify;
+}
+#diretor
+{
+	text-align: justify;
+}
+
+.estrela
+{
+	margin-left: 103px;
+    width: 130px;
+    margin-top: 15px;
+}
