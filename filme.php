@@ -27,7 +27,7 @@
 	$filmeDiretorDAO = new FilmeDiretorDAO();
 	$diretores = $filmeDAO->getDiretor($id);
 	$avaliacaoDAO = new AvaliacaoDAO();
-	$avaliacoes = $avaliacaoDAO->listar();
+	$avaliacoes = $avaliacaoDAO->listarAvaliacao($id);
 ?>
 
 <iframe src="<?= ($filme->getUrl()) ?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
