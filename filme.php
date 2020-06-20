@@ -56,23 +56,40 @@
 			<?php endforeach; ?>
 			</p>
 		</h3>
+		<h3>
+			<strong>
+				Data de Estreia:
+			</strong>
+			<p id="elenco">
+				<?= ($filme->getDataLancamento()) ?>
+			</p>
+		</h3>
+		<h3>
+			<strong>
+				Tempo de Filme:
+			</strong>
+			<p id="elenco">
+				<?= ($filme->getDuracao()) ?>
+			</p>
+		</h3>
 	</div>
 </div>
+
 <div class="row">
 	<?php foreach($avaliacoes as $avaliacao): ?>
-		<img class="estrela" src="admin/assets/img/estrelas/<?= $avaliacao->getAvaliacao() ?>.png">
+		<img class="estrela" src="admin/assets/img/estrelas/<?= ($avaliacao->getAvaliacao() != '' ? $avaliacao->getAvaliacao() : 0) ?>.png">
 		<br>
-		(<?= $avaliacao->getAvaliacao() ?> / 5)
-		<?php endforeach; ?>
+		(<?= ($avaliacao->getAvaliacao() != '' ? $avaliacao->getAvaliacao() : 0) ?> / 5)
+	<?php endforeach; ?>
+</div>
+<div class="genero">
+	<h3>Gênero:</h3>
 </div>
 <div class="row">
-	<div class="col-md-4">
-		<h3 class="filme_pag">Gênero:</h3>
-	</div>
-	<div class="col-md-8">
+	<div class="col-md-8 genero">
 		<?php foreach($generos as $genero): ?>
-		<span class="badge badge-primary filme_pag">
-				<?= $genero->getNome() ?>
+		<span class="badge badge-primary">
+			<?= $genero->getNome() ?>
 		</span>
 		<?php endforeach; ?>
 	</div>
