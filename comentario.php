@@ -1,0 +1,54 @@
+<p>&nbsp;</p>
+	<table class="table table-sm table-dark">
+		<thead>
+		    <tr>
+		      <th class="centraliza-tabela">
+		      	<?php 
+				    if(isset($_SESSION['nome'])) {
+				?>
+				    <img src="admin/assets/img/usuario/<?= ($_SESSION['imagem'] != '' && file_exists('admin/assets/img/usuario/'.$_SESSION['imagem']) ? $_SESSION['imagem'] : 'usuario.png' ) ?>" class="rounded-circle user-img-menu menu-img coment-img">
+				      <?= ($_SESSION['nome']) ?>
+				<?php }else{ ?>
+					<img src="admin/assets/img/usuario/usuario.png" class="rounded-circle user-img-menu menu-img coment-img">
+				<?php } ?>
+
+		      </th>
+		      <th>
+		      	<form action="controle_comentario.php?id=<?= $filme->getId() ?>">
+		 			<div>
+		 				<p>&nbsp;</p>
+						<textarea class="form-control"id="exampleFormControlTextarea2" rows="3">
+						</textarea>
+						<?php date_default_timezone_set('America/Sao_Paulo'); ?>
+						<?= date('d-m-Y H:i:s'); ?>
+						<button class="btn btn-info">
+							Enviar
+						</button>
+					</div>
+				</form>
+		      </th>
+		    </tr>
+		</thead>
+		<tbody>
+		<?php foreach($comentarios as $comentario): 
+			$usuario_id = $usuarioDAO->get($comentario->getUsuarioId());
+		?>
+		    <tr>
+		      <th  class="centraliza-tabela">
+		      	<img src="admin/assets/img/usuario/<?= ($usuario_id->getImagem() != '' && file_exists('admin/assets/img/usuario/'.$usuario_id->getImagem()) ? $usuario_id->getImagem() : 'usuario.png') ?>" alt="" class="rounded-circle coment-img">
+		      <?= ($usuario_id->getNome()) ?>
+		      </th>
+			    <td>
+			   		<form>
+		 				<div>
+		 					<p>&nbsp;</p>
+							<textarea class="form-control"readonly id="exampleFormControlTextarea2" rows="3"><?= ($comentario->getComentario()) ?>
+							</textarea>
+							<?= ($comentario->getDataComentario()) ?>
+						</div>
+				   	</form>		      	
+		      </td>
+		    </tr>
+		<?php endforeach; ?>
+		</tbody>
+	</table>

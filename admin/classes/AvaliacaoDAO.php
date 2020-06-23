@@ -25,7 +25,7 @@ class AvaliacaoDAO extends Model
 		$this->alterar($avaliacao->getId(), $values);
 	}
 
-	public function listar($pesquisa = '')
+		public function listar($pesquisa = '')
 	{
 		if ($pesquisa != '') {
 			$sql = "SELECT * FROM {$this->tabela}
@@ -50,5 +50,12 @@ class AvaliacaoDAO extends Model
 		$stmt->execute();
 		return $stmt->fetchAll();
 	}
+
+	public function deletaAvaliacao($id)
+    {
+    	$sql = "DELETE FROM {$this->tabela} WHERE filme_id = {$id}";
+    	$stmt = $this->db->prepare($sql);
+    	$stmt->execute();
+    }
 
 }

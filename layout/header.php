@@ -1,3 +1,4 @@
+<?php session_start() ?>
 <html>
 <title>Pipoca Doce</title>
 <link rel="icon" href="assets/img/pipoquinha.png" type="image/x-icon" />
@@ -9,6 +10,7 @@
 <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 <link rel="stylesheet" href="../assets/js/assets/owl.carousel.min.css">
 <link rel="stylesheet" href="../assets/js/assets/owl.theme.default.min.css">
+
 
 
 <body class="w3-black">

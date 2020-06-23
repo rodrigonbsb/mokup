@@ -1,7 +1,7 @@
 <?php
 session_start();
-require 'classes/Usuario.php';
-require 'classes/UsuarioDAO.php';
+require 'admin/classes/Usuario.php';
+require 'admin/classes/UsuarioDAO.php';
 $usuarioDAO = new UsuarioDAO();
 
 $email = $_POST['email'];
@@ -11,7 +11,7 @@ $usuario = $usuarioDAO->getLogin($email, $senha);
 
 if(empty($usuario)) {
 	session_destroy();
-	$msg = 'Falha no login, tente novamente!';
+	$msg = 'Usuário não encontrado';
 	header("Location: index.php?msg=$msg");
 } else {
 	$_SESSION['nome'] = $usuario->getNome();
@@ -20,6 +20,6 @@ if(empty($usuario)) {
 	$_SESSION['id_usuario'] = $usuario->getId();
 
 	$msg = 'Usuário logado com sucesso!';
-	header("Location: home.php?msg=$msg");
+	header("Location: index.php?msg=$msg");
 }
 ?> 

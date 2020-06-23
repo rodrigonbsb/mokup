@@ -10,8 +10,7 @@
 	<link rel="shortcut icon" type="image/x-icon" href="./assets/img/favicon.ico">
 	<style>
 		body {
-			background-image: url(assets/img/fundoLogin.jpg);
-			background-color: #f0f0f5;
+			background-image: url(./assets/img/fundoLogin.jpg);
 		}
 	</style>
 </head>
@@ -26,37 +25,38 @@
 	?>
 </div>
 <div class="logon-container">
-<div class="row">
-	<div class="col-4 offset-4 ">
-		<div class="card-index">
-			<div class="card-header">
-				<img src="assets/img/logo.png">
-				<br>
-				<h3 align="center">Administrativo</h3>
-			</div>
-			<div class="card-body">
-				<form action="login.php" method="post">
-					<div class="form-group row">
-						<input type="email" name="email" id="email" class="form-control" required onfocus="this.removeAttribute('readonly');" readonly autofocus placeholder="Email">
-					</div>
-					<div class="form-group row">
-						<!-- <label for="senha">Senha:</label> -->
-							<input type="password" name="senha" id="senha" class="form-control col-10" required onfocus="this.removeAttribute('readonly');" readonly placeholder="Senha">
-							<a href="#" class="btn-show-password btn btn-outline-secondary col-2" >
-								<i class="fas fa-eye"></i>
-							</a>
-					</div>
+	<div class="row">
+		<div class="col-4 offset-4 ">
+			<div class="card-index">
+				<div class="card-header">
+					<a href="index.php">
+						<img src="assets/img/logoDoce.png">
+					</a>
 					<br>
-					<div class="form-group row">
-						<button type="submit" class="button-login">Entrar</button>
-					</div>
-				</form>
+					<h3 align="center">Administrativo</h3>
+				</div>
+				<div class="card-body">
+					<form action="login.php" method="post">
+						<div class="form-group row">
+							<input type="email" name="email" id="email" class="form-control" required onfocus="this.removeAttribute('readonly');" readonly autofocus placeholder="Email">
+						</div>
+						<div class="form-group row">
+							<!-- <label for="senha">Senha:</label> -->
+								<input type="password" name="senha" id="senha" class="form-control col-10" required onfocus="this.removeAttribute('readonly');" readonly placeholder="Senha">
+								<a href="#" class="btn-show-password btn btn-outline-secondary col-2" >
+									<i class="fas fa-eye"></i>
+								</a>
+						</div>
+						<br>
+						<div class="form-group row">
+							<button type="submit" class="button-login">Entrar</button>
+						</div>
+					</form>
+				</div>
 			</div>
 		</div>
 	</div>
 </div>
-</div>
-		
 
 
 
@@ -82,3 +82,43 @@ $(document).ready(function(){
 </script>
 </body>
 </html>
+
+
+
+<!-- <div class="container">
+	<div class="logon-container">
+        <section class="form">
+			mensagem
+    		<a href="index.php">
+            	<img src=./assets/img/logo.png style="width: 310px" alt="Pipoca Doce" />	
+    		</a>
+
+			<form action="login.php" method="post">
+				
+				<h1 align="center">Administrativo</h1>
+				
+					<input type="email" name="email" id="email" 
+					class="form-control" required onfocus="this.removeAttribute('readonly');" 
+					readonly autofocus 
+					placeholder="Seu Email">
+
+				<div class="input-group mb-3">
+					<input type="password" name="senha" id="senha" 
+					class="form-control" required onfocus="this.removeAttribute('readonly');" 
+					readonly placeholder="Sua Senha">
+
+					<div class="input-group-append">
+						<h5 class="btn-show-password btn btn-outline-secondary">
+							<i class="fas fa-eye"></i>
+						</h5>
+					</div>
+				</div>
+
+	                    <button class="button" type="submit">Entrar</button>
+            </form>
+        </section>
+
+        <img src=./assets/img/pipoca.png alt="" />
+
+    </div>
+</div>	 -->

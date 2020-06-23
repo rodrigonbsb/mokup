@@ -69,17 +69,17 @@ if(isset($_GET['pesquisa']) && $_GET['pesquisa'] != '') {
 			<tr>
 				<td><?= $avaliacao->getId() ?></td>
 				<td>
-					<img style="width: 100px;" src="./assets/img/estrelas/<?= $avaliacao->getavaliacao() ?>.png">
+					<img style="width: 100px" src="./assets/img/estrelas/<?= $avaliacao->getavaliacao() ?>.png">
 				</td>
 				<td><?= $avaliacao->getDataavaliacao() ?></td>
 				<td><?= $usuario_id->getNome() ?></td>
 				<td><?= $filme_id->getNome() ?></td>
 
 				<td>
-					<a href="form_avaliacao.php?id=<?= $avaliacao->getId() ?>" class="btn btn-danger">
+					<a href="form_avaliacao.php?id=<?= $avaliacao->getId() ?>" class="btn btn-warning">
 						<i class="fas fa-edit"></i>
 					</a>					
-					<a href="controle_avaliacao.php?acao=deletar&id=<?= $avaliacao->getId() ?>" class="btn btn-warning" onclick="return confirm('Deseja realmente exluir o avaliacao?')">
+					<a href="controle_avaliacao.php?acao=deletar&id=<?= $avaliacao->getId() ?>" class="btn btn-danger" onclick="return confirm('Deseja realmente exluir o avaliacao?')">
 						<i class="fas fa-trash-alt"></i>
 					</a>
 				</td>
