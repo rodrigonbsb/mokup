@@ -33,7 +33,7 @@ $usuario = new Usuario();
 							<!-- <label for="senha">Senha:</label> -->
 					<input type="password" name="senha" id="senha" class="form-control col-10" required onfocus="this.removeAttribute('readonly');" readonly placeholder="Senha">
 						<a href="#" class="btn-show-password btn btn-outline-secondary col-2" >
-							<i class="far fa-eye"></i>
+							<i class="far fa-eye olho"></i>
 						</a>
 				</div>
 				<br>
@@ -85,10 +85,10 @@ $(document).ready(function(){
 
       	if(campoTipo == 'password') {
         	campoPassword.attr('type', 'text');
-        	$('.btn-show-password').html('<i class="fas fa-eye-slash"></i>');
+        	$('.btn-show-password').html('<i class="fas fa-eye-slash olho"></i>');
       	} else {
       		campoPassword.attr('type', 'password');
-      		$('.btn-show-password').html('<i class="far fa-eye"></i>');
+      		$('.btn-show-password').html('<i class="far fa-eye olho"></i>');
       	}
 
 	});

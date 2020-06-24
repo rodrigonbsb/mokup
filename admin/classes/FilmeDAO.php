@@ -52,6 +52,7 @@ class FilmeDAO extends Model
                                         /*OR fg.nome like '%{$pesquisa}%'*/
                                         OR f.duracao like '%{$pesquisa}%'
                                         OR f.dataLancamento like '%{$pesquisa}%'
+                                        OR g.nome like '%{$pesquisa}%'
                                         OR f.tipo like '%{$pesquisa}%'
                                         OR f.elenco like '%{$pesquisa}%'
                                         /*OR f.diretor like '%{$pesquisa}%'*/

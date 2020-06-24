@@ -14,13 +14,12 @@
 
 		      </th>
 		      <th>
-		      	<form action="controle_comentario.php?id=<?= $filme->getId() ?>">
+		      	<form action="controle_comentario.php?id=<?= $filme->getId() ?>" method="post">
 		 			<div>
 		 				<p>&nbsp;</p>
-						<textarea class="form-control"id="exampleFormControlTextarea2" rows="3">
-						</textarea>
-						<?php date_default_timezone_set('America/Sao_Paulo'); ?>
-						<?= date('d-m-Y H:i:s'); ?>
+						<textarea class="form-control" name="comentario" id="exampleFormControlTextarea2" rows="3"></textarea>
+						
+						
 						<button class="btn btn-info">
 							Enviar
 						</button>
