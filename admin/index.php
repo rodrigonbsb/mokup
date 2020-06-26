@@ -25,37 +25,37 @@
 	?>
 </div>
 <div class="logon-container">
-	<div class="row">
-		<div class="col-4 offset-4 ">
-			<div class="card-index">
-				<div class="card-header">
-					<a href="index.php">
-						<img src="assets/img/logoDoce.png">
-					</a>
+<div class="row">
+	<div class="col-4 offset-4 ">
+		<div class="card-index">
+			<div class="card-header">
+				<a href="index.php">
+					<img src="assets/img/logoDoce.png">
+				</a>
+				<br>
+				<h3 align="center">Administrativo</h3>
+			</div>
+			<div class="card-body">
+				<form action="login.php" method="post">
+					<div class="form-group row">
+						<input type="email" name="email" id="email" class="form-control" required onfocus="this.removeAttribute('readonly');" readonly autofocus placeholder="Email">
+					</div>
+					<div class="form-group row">
+						<!-- <label for="senha">Senha:</label> -->
+							<input type="password" name="senha" id="senha" class="form-control col-10" required onfocus="this.removeAttribute('readonly');" readonly placeholder="Senha">
+							<a href="#" class="btn-show-password btn btn-outline-secondary col-2" >
+								<i class="fas fa-eye"></i>
+							</a>
+					</div>
 					<br>
-					<h3 align="center">Administrativo</h3>
-				</div>
-				<div class="card-body">
-					<form action="login.php" method="post">
-						<div class="form-group row">
-							<input type="email" name="email" id="email" class="form-control" required onfocus="this.removeAttribute('readonly');" readonly autofocus placeholder="Email">
-						</div>
-						<div class="form-group row">
-							<!-- <label for="senha">Senha:</label> -->
-								<input type="password" name="senha" id="senha" class="form-control col-10" required onfocus="this.removeAttribute('readonly');" readonly placeholder="Senha">
-								<a href="#" class="btn-show-password btn btn-outline-secondary col-2" >
-									<i class="fas fa-eye"></i>
-								</a>
-						</div>
-						<br>
-						<div class="form-group row">
-							<button type="submit" class="button-login">Entrar</button>
-						</div>
-					</form>
-				</div>
+					<div class="form-group row">
+						<button type="submit" class="button-login">Entrar</button>
+					</div>
+				</form>
 			</div>
 		</div>
 	</div>
+</div>
 </div>
 
 
