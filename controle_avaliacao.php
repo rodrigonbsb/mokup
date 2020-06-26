@@ -19,4 +19,4 @@ $avaliacaoDAO = new AvaliacaoDAO();
 	$id = $avaliacaoDAO->insereAvaliacao($avaliacao);
 	$msg = 'avaliacao cadastrado com sucesso';
 
-	header("Location: filme.php?id=$id&msg=$msg");
+	header("Location: filme.php?id=$id_filme&msg=$msg");
