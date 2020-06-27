@@ -14,8 +14,8 @@ $usuario = new Usuario();
 	}
 ?>
 <div class="container">
-	<div class="row perfil">
-		<div class="col">
+	<div class="row ">
+		<div class="col perfil">
 			<h2>Perfil do usuário <?= ($usuario->getNome()) ?></h2>
 		</div>
 	</div>
