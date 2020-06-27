@@ -98,14 +98,27 @@ class FilmeDAO extends Model
         $stmt->execute();
         return $stmt->fetchAll();
     }
-    public function trailer($pesquisa = '', $limit = 300, $offset = 1)
+    public function trailer($limit = 300, $offset = 1)
+    {
+        
+            $sql = "SELECT * FROM filme
+                            ORDER BY Rand()
+                            LIMIT {$offset}, {$limit}";
+        
+        $stmt = $this->db->prepare($sql);
+        $stmt->setFetchMode(PDO::FETCH_CLASS, $this->class);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+        public function paginacao($pesquisa = '')
     {
         if($pesquisa != '') {
-            $sql = "SELECT f.*,group_concat(distinct d.nome) as nome_diretor, group_concat(distinct g.nome) as nome_genero FROM filme f 
+            $sql = "SELECT COUNT(f.*),group_concat(distinct d.nome) as nome_diretor, group_concat(distinct g.nome) as nome_genero FROM filme f 
                         LEFT JOIN filme_genero fg on fg.id_filme = f.id
                         LEFT JOIN genero g on g.id = fg.id_genero
                         LEFT JOIN filme_diretor fd on fd.id_filme = f.id
-                        LEFT JOIN diretor d on d.id = fd.id_diretor                               
+                        LEFT JOIN diretor d on d.id = fd.id_diretor                             
                             WHERE f.nome like '%{$pesquisa}%'
                                         OR g.nome like '%{$pesquisa}%'
                                         OR f.duracao like '%{$pesquisa}%'
@@ -113,29 +126,10 @@ class FilmeDAO extends Model
                                         OR f.tipo like '%{$pesquisa}%'
                                         OR f.elenco like '%{$pesquisa}%'
                                         OR d.nome like '%{$pesquisa}%'
-                                            GROUP BY f.id
-                                            ORDER BY Rand()
-                                            LIMIT {$offset}, {$limit}";
+                                            GROUP BY f.id";
         } else {
-            $sql = "SELECT f.*,group_concat(distinct d.nome) as nome_diretor, group_concat(distinct g.nome) as nome_genero FROM filme f 
-                        LEFT JOIN filme_genero fg on fg.id_filme = f.id
-                        LEFT JOIN genero g on g.id = fg.id_genero
-                        LEFT JOIN filme_diretor fd on fd.id_filme = f.id
-                        LEFT JOIN diretor d on d.id = fd.id_diretor
-                                GROUP BY f.id
-                                ORDER BY Rand()
-                                LIMIT {$offset}, {$limit}";
+            $sql = "SELECT COUNT(*) as total FROM {$this->tabela} ";
         }
-        $stmt = $this->db->prepare($sql);
-        $stmt->setFetchMode(PDO::FETCH_CLASS, $this->class);
-        $stmt->execute();
-        return $stmt->fetchAll();
-    }
-
-        public function paginacao()
-    {
-
-        $sql = "SELECT COUNT(*) as total FROM {$this->tabela} ";
         $stmt = $this->db->prepare($sql);
         $stmt->setFetchMode(PDO::FETCH_CLASS, $this->class);
         $stmt->execute();

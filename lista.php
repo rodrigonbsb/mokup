@@ -15,15 +15,32 @@
     $limit = 12;
 	$offset = ($pagina - 1) * $limit;
 	$filmeDAO = new FilmeDAO();
-	$total = $filmeDAO->paginacao();
+
+	if(isset($_GET['pesquisa']) && $_GET['pesquisa'] != '') {
+		$filmes = $filmeDAO->listar($_GET['pesquisa'], $limit, $offset);
+		$total = $filmeDAO->paginacao($_GET['pesquisa']);
+	} else {
+		$filmes = $filmeDAO->listar('', $limit, $offset);
+		$total = $filmeDAO->paginacao();
+	}
+
 	$paginas =  (($total->total % $limit) > 0) ? (int)($total->total / $limit) + 1 : ($total->total / $limit);
 	$pagina = max(min($paginas, $pagina), 1);
-
-	$filmes = $filmeDAO->listar('', $limit, $offset);
 	$avaliacaoDAO = new AvaliacaoDAO();
 	
 ?>
 	<div class="container">
+		<div class="row">		
+				<form class="form-inline my-2 my-lg-0">
+				      <input class="form-control mr-sm-2" name="pesquisa" type="search" placeholder="Digite um filme" aria-label="Pesquisar" value="<?= (isset($_GET['pesquisa']) ? $_GET['pesquisa'] : '') ?>">
+				      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+				      	<i class="fas fa-search"></i>	
+				      </button>
+				      <a href="lista.php" class="btn btn-outline-warning my-2 my-sm-0">
+				      	<i class="fas fa-trash-alt"></i>
+				      </a>
+			    </form>
+		</div>
 		<div class="row">
 			<?php 
 				foreach ($filmes as $key => $filme) { 

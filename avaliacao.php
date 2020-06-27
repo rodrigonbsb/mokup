@@ -13,7 +13,7 @@
 		          <span aria-hidden="true">&times;</span>
 		        </button>
 		      </div>
-		      <form class="centraliza" action="controle_avaliacao.php?id=<?= $filme->getId() ?>" method="post">
+		      <form class="centraliza" action="controle_avaliacao.php?id_filme=<?= $filme->getId() ?>" method="post">
 			      <div class="modal-body">
 			        <div class="estrelas">
 					  <input type="radio" id="cm_star-empty" name="avaliacao" value="" checked/>

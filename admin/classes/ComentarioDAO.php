@@ -44,7 +44,8 @@ class ComentarioDAO extends Model
 	{
 
 			$sql = "SELECT  * FROM {$this->tabela}
-					WHERE filme_id = '{$id_filme}'";
+					WHERE filme_id = '{$id_filme}'
+					ORDER BY id DESC";
 		$stmt = $this->db->prepare($sql);
 		$stmt->setFetchMode(PDO::FETCH_CLASS, $this->class);
 		$stmt->execute();

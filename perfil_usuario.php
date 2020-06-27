@@ -19,7 +19,7 @@ $usuario = new Usuario();
 			<h2>Perfil do usuário <?= ($usuario->getNome()) ?></h2>
 		</div>
 	</div>
-	<form  action="controle_usuario.php?acao=>editar">
+	<form  action="controle_usuario.php?acao=editar" method="post" enctype="multipart/form-data">
 		<div class="col text-center perfil">
 			<img src="admin/assets/img/usuario/<?= (($usuario->getImagem()) != '' && file_exists('admin/assets/img/usuario/'.$usuario->getImagem()) ? $usuario->getImagem() : 'usuario.png') ?>" alt="" width="150" class="rounded-circle img-thumbnail" id="fotopreview">
 			<br>
@@ -29,7 +29,13 @@ $usuario = new Usuario();
 				<label class="custom-file-label" for="imagem">Trocar Imagem</label>
 			</div>
 		</div>
-		<div class="col perfil">	
+		<div class="col perfil">
+			<div class="form-group">
+				<input type="hidden" class="form-control" name="id" id="id" value="<?=($usuario->getId() != '' ? $usuario->getId() : '')?>">
+			</div>
+			<div class="form-group">
+				<input type="hidden" class="form-control" name="tipo" id="tipo" value="<?=($usuario->getTipo() != '' ? $usuario->getTipo() : '')?>">
+			</div>	
 			<div class="form-group">
 				<label for="nome">Nome</label>
 				<input type="text" class="form-control" name="nome" id="nome" required value="<?=(($usuario->getNome()))?>">

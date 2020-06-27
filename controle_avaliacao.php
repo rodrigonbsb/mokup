@@ -6,8 +6,7 @@ require 'admin/classes/AvaliacaoDAO.php';
 $avaliacao = new Avaliacao();
 $avaliacaoDAO = new AvaliacaoDAO();
 
-
-	$id_filme = $_GET['id'];
+	$id_filme = $_GET['id_filme'];
 
 	$avaliacao->setAvaliacao($_POST['avaliacao']);
 	$avaliacao->setDataAvaliacao(date('Y-m-d H:i:s')) ;
