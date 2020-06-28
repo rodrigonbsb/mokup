@@ -8,7 +8,7 @@ $total_usuarios = $relatorioDAO->contar('usuario');
 $total_filmes = $relatorioDAO->contar('filme');
 $total_comentarios = $relatorioDAO->contar('comentario');
 $total_avaliacoes = $relatorioDAO->contar('avaliacao');
-$filmes_avaliacao = json_encode($relatorioDAO->contarFilmesAvaliacao('avaliacao'));
+$filmes_avaliacao = json_encode($relatorioDAO->contarFilmesAvaliacao('avaliacao', '', 10));
 ?>
 
 <div class="row col">

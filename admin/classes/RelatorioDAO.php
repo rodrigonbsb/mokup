@@ -30,7 +30,7 @@ class RelatorioDAO extends Model
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function contarFilmesAvaliacao($table = 'avaliacao', $condicao = '')
+    public function contarFilmesAvaliacao($table = 'avaliacao', $condicao = '', $limit = ' ')
     {
         $where = '';
         if($condicao != '') {
@@ -39,7 +39,9 @@ class RelatorioDAO extends Model
         $sql = "SELECT f.nome, round(avg(avaliacao)) as avaliacao, count(*) as total
                 FROM avaliacao a 
                 LEFT JOIN filme f ON f.id = a.filme_id
-                GROUP BY a.filme_id;";
+                GROUP BY a.filme_id
+                LIMIT {$limit};";
+                 
         $stmt = $this->db->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
