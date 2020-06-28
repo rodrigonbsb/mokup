@@ -1,7 +1,6 @@
-<?php include './layout/header.php';?>
-<?php include './layout/menu.php';?>
-<?php
-
+<?php 
+include './layout/header.php';
+include './layout/menu.php';
 require 'classes/Genero.php';
 require 'classes/Filme.php';
 require 'classes/Diretor.php';
