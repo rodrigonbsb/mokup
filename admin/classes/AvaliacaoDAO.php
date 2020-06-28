@@ -51,16 +51,16 @@ class AvaliacaoDAO extends Model
 		return $stmt->fetchAll();
 	}
 
-	public function filmeAvaliacao($id_filme)
-	{
+    public function filmeAvaliacao($id_filme)
+    {
 
-			$sql = "SELECT  round(avg(avaliacao)) as avaliacao FROM {$this->tabela}
-					WHERE filme_id = '{$id_filme}'";
-		$stmt = $this->db->prepare($sql);
-		$stmt->setFetchMode(PDO::FETCH_CLASS, $this->class);
-		$stmt->execute();
-		return $stmt->fetch();
-	}
+            $sql = "SELECT  round(avg(avaliacao)) as avaliacao FROM {$this->tabela}
+                    WHERE filme_id = '{$id_filme}'";
+        $stmt = $this->db->prepare($sql);
+        $stmt->setFetchMode(PDO::FETCH_CLASS, $this->class);
+        $stmt->execute();
+        return $stmt->fetch();
+    }
 
 	public function deletaAvaliacao($id)
     {
@@ -68,5 +68,6 @@ class AvaliacaoDAO extends Model
     	$stmt = $this->db->prepare($sql);
     	$stmt->execute();
     }
+
 
 }
