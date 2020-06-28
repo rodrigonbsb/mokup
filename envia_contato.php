@@ -1,9 +1,9 @@
 <?php
 include_once('email_config.php');
-
-header('Content-type: text/html; charset=UTF-8'); 
 require 'admin/PHPMailer/SMTP.php';
 require 'admin/PHPMailer/PHPMailer.php';
+
+header('Content-type: text/html; charset=UTF-8'); 
 
 /* Usando MailTrap */
 $mail = new PHPMailer();
