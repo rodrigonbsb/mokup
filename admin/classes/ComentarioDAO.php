@@ -49,11 +49,11 @@ class ComentarioDAO extends Model
             $where = "where usuario_id = {$condicao}";
         }
         $sql = "SELECT * FROM {$this->tabela} {$where};";
-        
+
         $stmt = $this->db->prepare($sql);
-		$stmt->setFetchMode(PDO::FETCH_CLASS, $this->class);
-		$stmt->execute();
-		return $stmt->fetchAll();
+        $stmt->setFetchMode(PDO::FETCH_CLASS, $this->class);
+        $stmt->execute();
+        return $stmt->fetchAll();
     }
 
 	public function listarComentario($id_filme)
@@ -67,6 +67,8 @@ class ComentarioDAO extends Model
 		$stmt->execute();
 		return $stmt->fetchAll();
 	}
+
+	
 
 	public function deletaComentario($id)
     {

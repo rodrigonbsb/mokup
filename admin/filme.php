@@ -1,6 +1,7 @@
-<?php 
-include './layout/header.php';
-include './layout/menu.php';
+<?php include './layout/header.php';?>
+<?php include './layout/menu.php';?>
+<?php
+
 require 'classes/Genero.php';
 require 'classes/Filme.php';
 require 'classes/Diretor.php';
@@ -89,7 +90,7 @@ if(isset($_GET['pesquisa']) && $_GET['pesquisa'] != '') {
 				<a href="form_filme.php?id=<?= $filme->getId() ?>" data-toggle="tooltip" title="Editar Filme" class="btn btn-warning">
 					<i class="fas fa-edit"></i>
 				</a>					
-				<a href="controle_filme.php?acao=deletar&id=<?= $filme->getId() ?>" class="btn btn-danger" onclick="return confirm('Deseja realmente exluir o filme?')">
+				<a href="controle_filme.php?acao=deletar&id=<?= $filme->getId() ?>" title="Excluir filme" class="btn btn-danger" onclick="return confirm('Deseja realmente exluir o filme?')">
 					<i class="fas fa-trash-alt"></i>
 				</a>
 			</li>

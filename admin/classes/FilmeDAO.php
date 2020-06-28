@@ -72,7 +72,7 @@ class FilmeDAO extends Model
         return $stmt->fetchAll();
     }
 
-    public function listarPopulares($pesquisa = '', $limit = 300, $offset = 1)
+    public function listarPopulares($pesquisa = '', $limit = 300, $offset = 0)
     {
         if($pesquisa != '') {
             $sql = "SELECT f.* , round(avg(avaliacao)) as avaliacao FROM pipoca_doce.filme f
@@ -116,7 +116,7 @@ class FilmeDAO extends Model
     public function alfabetica($letra = '',$limit = 300, $offset = 1)
     {
         $sql = "SELECT * FROM filme
-                where nome like '$letra%'
+                where nome like '{$letra}%'
                 LIMIT {$offset}, {$limit};";
 
         $stmt = $this->db->prepare($sql);
@@ -153,7 +153,6 @@ class FilmeDAO extends Model
         $stmt->execute();
         return $stmt->fetch();
     }
-
     public function listarBreve($limit = 300)
     {
 
