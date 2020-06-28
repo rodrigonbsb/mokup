@@ -40,6 +40,7 @@ class RelatorioDAO extends Model
                 FROM avaliacao a 
                 LEFT JOIN filme f ON f.id = a.filme_id
                 GROUP BY a.filme_id
+                order by avaliacao DESC
                 LIMIT {$limit};";
                  
         $stmt = $this->db->prepare($sql);
