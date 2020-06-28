@@ -38,7 +38,7 @@ if($acao == 'deletar') {
 
 		if ($_FILES['imagem']['error'] != 0) {
 		  $msg = "Não foi possível fazer o upload, erro:" . $upload['erros'][$_FILES['imagem']['error']];
-		  header("Location: form_usuario.php?msg=$msg");
+		  header("Location: http://34.75.103.31/pipoca/form_usuario.php?msg=$msg");
 		  exit;
 		}
 
@@ -46,7 +46,7 @@ if($acao == 'deletar') {
 		$extensao = strtolower(end($imagem));
 		if(array_search($extensao, $upload['extensoes']) === false) {
 		  $msg = "Por favor, envie arquivos com as seguintes extensões: jpg, png ou gif";
-		  header("Location: form_usuario.php?msg=$msg");
+		  header("Location: http://34.75.103.31/pipoca/form_usuario.php?msg=$msg");
 		  exit;
 		}
 		$nome_final = $imagem[0] . '-' . date('YmdHmi') . '.' . $extensao;
@@ -56,7 +56,7 @@ if($acao == 'deletar') {
 		} else {
 		  // Não foi possível fazer o upload, provavelmente a pasta está incorreta
 		  $msg = "Não foi possível enviar o arquivo, tente novamente";
-		  header("Location: form_usuario.php?msg=$msg");
+		  header("Location: http://34.75.103.31/pipoca/form_usuario.php?msg=$msg");
 		  exit;
 		}
 	}
@@ -70,7 +70,7 @@ if($acao == 'deletar') {
 	$id_usuario = $usuarioDAO->insereUsuario($usuario);
 	$msg = 'Usuário cadastrado com sucesso';
 
-	header("Location: index.php?id=$id_usuario&msg=$msg");
+	header("Location: http://34.75.103.31/pipoca/index.php?id=$id_usuario&msg=$msg");
 
 } else if(($acao == 'editar') 
 			|| ($_SESSION['id_usuario'] == $_POST['id'])) {
@@ -85,7 +85,7 @@ if($acao == 'deletar') {
 
 		if ($_FILES['imagem']['error'] != 0) {
 		  $msg = "Não foi possível fazer o upload, erro:" . $upload['erros'][$_FILES['imagem']['error']];
-		  header("Location: perfil_usuario.php?id=$id_usuario&msg=$msg");
+		  header("Location: http://34.75.103.31/pipoca/perfil_usuario.php?id=$id_usuario&msg=$msg");
 		  exit;
 		}
 
@@ -93,7 +93,7 @@ if($acao == 'deletar') {
 		$extensao = strtolower(end($imagem));
 		if(array_search($extensao, $upload['extensoes']) === false) {
 		  $msg = "Por favor, envie arquivos com as seguintes extensões: jpg, png ou gif";
-		  header("Location: perfil_usuario.php?id=$id_usuario&msg=$msg");
+		  header("Location: http://34.75.103.31/pipoca/perfil_usuario.php?id=$id_usuario&msg=$msg");
 		  exit;
 		}
 		$nome_final = $imagem[0] . '-' . date('YmdHmi') . '.' . $extensao;
@@ -121,7 +121,7 @@ if($acao == 'deletar') {
 		} else {
 		  // Não foi possível fazer o upload, provavelmente a pasta está incorreta
 		  $msg = "Não foi possível enviar o arquivo, tente novamente";
-		  header("Location: perfil_usuario.php?id=$id_usuario&msg=$msg");
+		  header("Location: http://34.75.103.31/pipoca/perfil_usuario.php?id=$id_usuario&msg=$msg");
 		  exit;
 		}
 	}
@@ -135,7 +135,7 @@ if($acao == 'deletar') {
 	$usuarioDAO->alteraUsuario($usuario);
 	$msg = 'Usuário alterado com sucesso';
 	
-	header("Location: perfil_usuario.php?id=$id_usuario&msg=$msg");
+	header("Location: http://34.75.103.31/pipoca/perfil_usuario.php?id=$id_usuario&msg=$msg");
 
 } else if($acao == 'removeImagem') {
 	$usuario = $usuarioDAO->get($id);
