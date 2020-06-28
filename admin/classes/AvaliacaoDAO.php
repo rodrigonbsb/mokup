@@ -18,6 +18,13 @@ class AvaliacaoDAO extends Model
 		return $this->inserir($values);
 	}
 
+	public function deletaAvaliacaoUser($id)
+    {
+        $sql = "DELETE FROM {$this->tabela} WHERE usuario_id = {$id}";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+    }
+
 	public function alteraAvaliacao(Avaliacao $avaliacao) {
 		$values = "avaliacao = '{$avaliacao->getAvaliacao()}',
 				   data_avaliacao = '{$avaliacao->getDataAvaliacao()}'

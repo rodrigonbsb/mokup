@@ -25,6 +25,13 @@ class ComentarioDAO extends Model
 		$this->alterar($comentario->getId(), $values);
 	}
 
+	public function deletaComentarioUser($id)
+    {
+        $sql = "DELETE FROM {$this->tabela} WHERE usuario_id = {$id}";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+    }
+
 	public function listar($pesquisa = '')
 	{
 		if ($pesquisa != '') {

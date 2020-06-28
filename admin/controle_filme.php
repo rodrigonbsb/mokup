@@ -16,6 +16,7 @@ require 'classes/AvaliacaoDAO.php';
 require 'classes/ComentarioDAO.php';
 
 
+
 $filme = new Filme();
 $filmeDAO = new FilmeDAO();
 $generoDAO = new GeneroDAO();
@@ -24,6 +25,7 @@ $filmeGeneroDAO = new FilmeGeneroDAO();
 $filmeDiretorDAO = new FilmeDiretorDAO();
 $avaliacaoDAO = new AvaliacaoDAO();
 $comentarioDAO = new ComentarioDAO();
+
 
 
 $acao = $_GET['acao'];
